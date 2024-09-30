@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/15111314256024.webp" type="image/x-icon">
+    <title>Contador de Cliques</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <main class="main">
+        <section class="conteiner">
+            <h1>Contador de Cliques</h1>
+            <div>
+                <button id="contar">Clique em mim</button>
+                <button id="zerar">Zerar o contador</button>
+            </div>
+            <div id="conteundo">
+                <p>O Contador está com <mark>0</mark> cliques</p>
+            </div>
+        </section>
+        <button onclick="window.location.href='../index.html'" style="cursor: pointer; margin-top: 20px; background-color: #f44336; color: white; border: none; border-radius: 5px; padding: 10px 15px;">Voltar</button>
+
+        <footer>
+            <p>&copy;É os Guri</p>
+        </footer>
+
+    </main>
+
+    <script>
+        const contar = document.querySelector('#contar')
+const zerar = document.querySelector('#zerar')
+const res = document.querySelector('#conteundo')
+
+
+
+let star = 0
+let total = '';
+
+contar.addEventListener('click', function(){
+    total = ++ star
+    res.innerHTML = `<p> O Contador está com <mark>${star}</mark> cliques</p>`
+})
+
+
+zerar.addEventListener('click', function() {
+    star = 0 
+    
+    if(total >= 20 && total <= 40) {
+        
+        res.style.textAlign = 'center'
+        res.innerHTML = `<p> Você clicou <mark>${total}</mark> vezes &#x1F928</p>`
+    } else if(total >= 50 && total <= 65) {
+       
+        res.style.textAlign = 'center'
+        res.innerHTML = `<p> Você clicou <mark>${total}</mark> vezes &#x1F928</p>`
+    } else {
+        res.innerHTML = `<p> Você clicou <mark>${total}</mark> vezes &#x1F928</p>`
+    }
+    if(total == 1){
+        res.style.textAlign = 'center'
+        res.innerHTML = `<p> Você clicou <mark>${total}</mark> vez apenas &#x1F928</p>`
+    }
+
+})
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border-style: none;
+    text-decoration: none;
+}
+
+html,
+body {
+    height: 100vh;
+    background-color: var(---teste);
+}
+
+:root{
+    ---teste: linear-gradient(to left, #ff6662, #f98062, #ff9065);
+    ---background: #067952bd;
+    ---conteiner: #ffe4c49a;  
+    ---button: #c9c1b88f;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Verdana, Tahoma, sans-serif;
+    font-size: 1.2em;
+    padding-top: 100px;
+}
+
+.conteiner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 55%;
+    height: 391px;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: var(---background);
+}
+
+h1 {
+    font-family: 'Press Start 2P', 'Courier New', Courier, monospace;
+    font-size: 1.5em;
+}
+
+div {
+    margin: 41px 0; 
+} 
+
+
+@keyframes opa {
+ 0% {top: 50px;}
+ 25% {top: 25px;}
+ 50% {top: 15px;}
+ 100% {top: 0;}
+}
+
+button{
+    padding: 16px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin-left: 10px;
+    transition: all 0.5s cubic-bezier(0.63, 0.04, 0.56, 1.67);
+}
+
+button:hover {
+    background-color: #c9c1b88f;
+    color: #000000;
+    transform: scale(1.01);
+    box-shadow: 1px 2px 1px #000000;
+}
+
+p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: normal;
+    text-shadow: 2px 7px 11px #0000004a;
+}
+
+footer {
+    margin-top: 30px;
+    padding: 10px;
+    text-align: center;
+}
+
+footer > p {
+    letter-spacing: 0.9px;
+}
+
+footer a {
+    position: relative;
+    color: #000000;
+}
+
+footer a::after {
+    content: '';
+    position: absolute;
+    background-color: rgb(0, 255, 21);
+    width: 0;
+    height: 2px;
+    left: 0;
+    bottom: -5px;
+    transition: all 0.5s ease;
+}
+
+footer a:hover::after {
+    position: absolute;
+    width: 100%;
+    transition: all 0.5s ease;  
+}
+
+footer a:hover {
+    color: #ffffff;
+    transition: all 0.5s ease;
+}
+    </style>
+
+</body>
+</html>

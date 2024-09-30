@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória</title>
+    <link rel="shortcut icon" href="./img/15111314256024.webp" type="image/x-icon">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <h2>Jogo da Memória</h2>
+    <div id="memory-game"></div>
+    <div class="back">
+        <button onclick="window.location.href='../index.html'">Voltar</button>
+    </div>
+    
+        <footer>
+            <p>© É os Guri</p>
+        </footer>
+    
+
+    <script>
+        const cards = ['🍏', '🍌', '🍓', '🍍', '🍏', '🍌', '🍓', '🍍'];
+        let firstCard, secondCard;
+        let lockBoard = false;
+
+        function shuffle() {
+            cards.sort(() => 0.5 - Math.random());
+        }
+
+        function createCard(card) {
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('card');
+            cardElement.dataset.cardValue = card;
+            cardElement.innerText = '?';
+            cardElement.addEventListener('click', flipCard);
+            return cardElement;
+        }
+
+        function flipCard() {
+            if (lockBoard) return;
+            this.innerText = this.dataset.cardValue;
+            if (!firstCard) {
+                firstCard = this;
+                return;
+            }
+            secondCard = this;
+            lockBoard = true;
+
+            if (firstCard.dataset.cardValue === secondCard.dataset.cardValue) {
+                firstCard.removeEventListener('click', flipCard);
+                secondCard.removeEventListener('click', flipCard);
+                resetBoard();
+            } else {
+                setTimeout(() => {
+                    firstCard.innerText = '?';
+                    secondCard.innerText = '?';
+                    resetBoard();
+                }, 1000);
+            }
+        }
+
+        function resetBoard() {
+            [firstCard, secondCard] = [null, null];
+            lockBoard = false;
+        }
+
+        function init() {
+            shuffle();
+            const memoryGame = document.getElementById('memory-game');
+            cards.forEach(card => {
+                memoryGame.appendChild(createCard(card));
+            });
+        }
+
+        init();
+    </script>
+
+<style>
+    footer{
+        margin-top: 199px;
+    }
+    h2{
+        color: black;
+    }
+
+    button{
+        text-align: center;
+        cursor: pointer;
+        align-items: center;
+        align-self: center;
+        align-content: center;
+        margin-top: 20px; 
+        background-color: #f44336; 
+        color: white; 
+        border: none; 
+        border-radius: 5px; 
+        padding: 10px 15px;
+    }
+
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: linear-gradient(to left, #ff6662, #f98062, #ff9065);
+        background: linear-gradient(to left, #ff6662, #f98062, #ff9065);;
+    }
+    #memory-game {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        width: 80%;
+        max-width: 600px;
+        margin: auto;
+    }
+    .card {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 40px;
+        line-height: 100px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+</body>
+
+</html>

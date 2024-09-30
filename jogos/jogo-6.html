@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do Par ou Ímpar</title>
+    <link rel="shortcut icon" href="./img/15111314256024.webp" type="image/x-icon">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <h2>Jogo do Par ou Ímpar</h2>
+    <p>Escolha um número: <input type="number" id="userNumber" min="1" max="10" /></p>
+    <button onclick="play()">Jogar</button>
+    <p id="result"></p>
+
+    <button onclick="window.location.href='../index.html'" style="cursor: pointer; margin-top: 20px; background-color: #f44336; color: white; border: none; border-radius: 5px; padding: 10px 15px;">Voltar</button>
+
+    <footer>
+        <p>© É os Guri</p>
+    </footer>
+
+    <script>
+        function play() {
+            const userNumber = parseInt(document.getElementById('userNumber').value);
+            const computerNumber = Math.floor(Math.random() * 10) + 1;
+            const sum = userNumber + computerNumber;
+            const isEven = sum % 2 === 0;
+            const resultText = `Você escolheu ${userNumber}, o computador escolheu ${computerNumber}. A soma é ${sum}. `;
+            document.getElementById('result').innerText = resultText + (isEven ? "É par!" : "É ímpar!");
+        }
+    </script>
+
+<style>
+
+    footer{
+        margin-top: 265px;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f0f4f8;
+    }
+    input {
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 60px;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    p {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+</style>
+
+</body>
+</html>

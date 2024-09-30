@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="./img/15111314256024.webp" type="image/x-icon">
+  <title>Jogo da Adivinhação</title>
+</head>
+<body>
+  <script src="js/mycode.js"></script>
+  <div class="container">
+    <h1 class="page-title">Jogo da Adivinhação</h1>
+    <p class="page-subtitle">Digite um número de 0 a 10</p>
+    <input type="number" id="valor" />
+    <br>
+    <button id="chutar" onclick="Chutar()">Chutar</button>
+    <button onclick="Resetar()">Resetar</button>
+    <h4 class="resultado" id="resultado"></h4>
+    <button onclick="window.location.href='../index.html'" class="back-button">Voltar</button>
+    <hr>
+  </div>
+
+  <footer>
+    <p>&copy;É os Guri</p>
+  </footer>
+
+  <style>
+    body {
+      font-family: "Roboto Mono", monospace;
+      text-align: center;
+      background-image: linear-gradient(to left, #ff6662, #f98062, #ff9065);
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .container {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 15px;
+      padding: 20px;
+      max-width: 400px;
+      width: 90%;
+      margin: auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .page-title {
+      color: #ff6662;
+      margin: 10px 0;
+    }
+    
+    .page-subtitle {
+      color: #000;
+      margin: 10px 0;
+    }
+    
+    input {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      width: calc(100% - 20px);
+    }
+    
+    button {
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #ffffff;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .resultado {
+      color: #000;
+      margin-top: 16px;
+    }
+    
+    .back-button {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    hr {
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 20px 0;
+    }
+  </style>
+
+  <script>
+    var numeroSecreto = parseInt(Math.random() * 11);
+    var tentativasRestantes = 3;
+
+    function Chutar() {
+      var elementoResultado = document.getElementById("resultado");
+      var chute = parseInt(document.getElementById("valor").value);
+
+      if (chute == numeroSecreto) {
+        elementoResultado.innerHTML = "Você acertou, parabéns!";
+      } else if (chute > 10 || chute < 0) {
+        elementoResultado.innerHTML = "Por favor, digite um número de 0 a 10.";
+      } else {
+        tentativasRestantes--;
+        if (chute > numeroSecreto) {
+          elementoResultado.innerHTML =
+            "Você errou, o número é menor do que " +
+            chute +
+            ", você ainda tem " +
+            tentativasRestantes +
+            " tentativa(s).";
+        } else {
+          elementoResultado.innerHTML =
+            "Você errou, o número é maior do que " +
+            chute +
+            ", você ainda tem " +
+            tentativasRestantes +
+            " tentativa(s).";
+        }
+      }
+      if (tentativasRestantes <= 0) {
+        elementoResultado.innerHTML =
+          "Você perdeu o jogo, o número era " + numeroSecreto;
+      }
+    }
+
+    function Resetar() {
+      numeroSecreto = parseInt(Math.random() * 11);
+      tentativasRestantes = 3;
+      var elementoResultado = document.getElementById("resultado");
+      elementoResultado.innerHTML = "";
+      document.getElementById("valor").value = ""; // Limpar o campo de entrada
+    }
+  </script>
+</body>
+</html>
